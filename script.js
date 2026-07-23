@@ -38,7 +38,7 @@ const radioMessages = [
     "Cooler inventory has been classified.",
     "Mission objective: Create legendary memories.",
     "Secondary objective: Nobody loses the truck keys.",
-    "Warning: Tactical dad jokes detected.",
+    "Warning: Tactical jokes detected.",
     "Extraction window remains on schedule."
 ];
 
@@ -48,6 +48,7 @@ let messageIndex = 0;
 function updateRadioMessage() {
     radioMessage.textContent = `>> ${radioMessages[messageIndex]}`;
     messageIndex = (messageIndex + 1) % radioMessages.length;
+    playRadioBeep();
 }
 
 updateRadioMessage();
@@ -71,3 +72,47 @@ setTimeout(() => {
 setTimeout(() => {
     introScreen.classList.add("intro-finished");
 }, 5200);
+const soundToggle = document.getElementById("sound-toggle");
+
+var soundEnabled = false;
+var audioContext;
+
+soundToggle.addEventListener("click", () => {
+    soundEnabled = !soundEnabled;
+
+    if (soundEnabled) {
+        audioContext = audioContext || new AudioContext();
+        soundToggle.textContent = "🔊 COMMS ONLINE";
+        soundToggle.classList.add("sound-enabled");
+        playRadioBeep();
+    } else {
+        soundToggle.textContent = "🔇 ENABLE COMMS";
+        soundToggle.classList.remove("sound-enabled");
+    }
+});
+
+function playRadioBeep() {
+    if (!soundEnabled || !audioContext) return;
+
+    const oscillator = audioContext.createOscillator();
+    const volume = audioContext.createGain();
+
+    oscillator.type = "square";
+    oscillator.frequency.setValueAtTime(720, audioContext.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(
+        420,
+        audioContext.currentTime + 0.12
+    );
+
+    volume.gain.setValueAtTime(0.08, audioContext.currentTime);
+    volume.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioContext.currentTime + 0.15
+    );
+
+    oscillator.connect(volume);
+    volume.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + 0.15);
+}
