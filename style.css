@@ -751,3 +751,57 @@ body::after {
         text-align: center;
     }
 }
+.helicopter-flyby {
+    position: fixed;
+    top: 8%;
+    left: -500px;
+    z-index: 80;
+    width: min(45vw, 500px);
+    pointer-events: none;
+
+    animation: helicopterFlight 24s linear infinite;
+}
+
+.helicopter-flyby img {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    filter:
+        drop-shadow(0 12px 14px rgba(0, 0, 0, 0.8))
+        brightness(0.8);
+}
+
+@keyframes helicopterFlight {
+    0% {
+        left: -500px;
+        transform: translateY(0) scale(0.75);
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.9;
+    }
+
+    45% {
+        transform: translateY(30px) scale(0.9);
+    }
+
+    92% {
+        opacity: 0.9;
+    }
+
+    100% {
+        left: 110vw;
+        transform: translateY(-15px) scale(0.75);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .helicopter-flyby {
+        top: 12%;
+        width: 280px;
+        animation-duration: 18s;
+    }
+}
