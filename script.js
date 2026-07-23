@@ -1,118 +1,155 @@
-// Boys & Toys Countdown
-// Target: July 30, 2026 at 12:00 PM Eastern Daylight Time
+// BOYS & TOYS COUNTDOWN
+// July 30, 2026 at 3:00 PM Eastern Daylight Time
 
-const targetDate = new Date(2026, 6, 30, 15, 0, 0).getTime();
-// Month is zero-based, so 6 = July
+const targetDate = new Date("2026-07-30T15:00:00-04:00").getTime();
+
+const daysElement = document.getElementById("days");
+const hoursElement = document.getElementById("hours");
+const minutesElement = document.getElementById("minutes");
+const secondsElement = document.getElementById("seconds");
 
 function updateCountdown() {
     const now = Date.now();
     const distance = targetDate - now;
 
     if (distance <= 0) {
-        document.getElementById("days").textContent = "00";
-        document.getElementById("hours").textContent = "00";
-        document.getElementById("minutes").textContent = "00";
-        document.getElementById("seconds").textContent = "00";
+        daysElement.textContent = "00";
+        hoursElement.textContent = "00";
+        minutesElement.textContent = "00";
+        secondsElement.textContent = "00";
         return;
     }
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById("days").textContent = String(days).padStart(2, "0");
-    document.getElementById("hours").textContent = String(hours).padStart(2, "0");
-    document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
-    document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+    );
+
+    const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) /
+        (1000 * 60)
+    );
+
+    const seconds = Math.floor(
+        (distance % (1000 * 60)) / 1000
+    );
+
+    daysElement.textContent = String(days).padStart(2, "0");
+    hoursElement.textContent = String(hours).padStart(2, "0");
+    minutesElement.textContent = String(minutes).padStart(2, "0");
+    secondsElement.textContent = String(seconds).padStart(2, "0");
 }
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
+
+// CONNECTING SCREEN
+
+const introScreen = document.getElementById("intro-screen");
+const missionScreen = document.getElementById("mission-screen");
+const introOperators = document.querySelectorAll(
+    ".intro-operators div"
+);
+
+introOperators.forEach(function (operator, index) {
+    setTimeout(function () {
+        operator.classList.add("connected");
+    }, 700 + index * 650);
+});
+
+setTimeout(function () {
+    introScreen.classList.add("intro-finished");
+    missionScreen.classList.add("mission-visible");
+}, 3900);
+
+
+// RADIO CHATTER
+
 const radioMessages = [
-    "Avalon Command: All operators confirmed.",
+    "Command: Avalon perimeter secure.",
+    "Welcome back, SkilledSnake.",
     "SkilledSnake has assumed squad leadership.",
     "HeavyontheKream has secured the refreshments.",
     "KTdefoor reports all systems green.",
     "mattismattismatt has entered the AO.",
-    "Cooler inventory has been classified.",
-    "Mission objective: Create legendary memories.",
+    "Mission objective: Make legendary memories.",
     "Secondary objective: Nobody loses the truck keys.",
-    "Warning: Tactical jokes detected.",
-    "Extraction window remains on schedule."
+    "Pizza supply confirmed. Morale is high.",
+    "Cooler status confirmed. Proceed with operation.",
+    "Avalon Command has cleared your squad.",
+    "All operators accounted for. Stand by for deployment."
 ];
 
-const radioMessage = document.getElementById("radio-message");
-let messageIndex = 0;
+const radioMessageElement =
+    document.getElementById("radio-message");
 
-function updateRadioMessage() {
-    radioMessage.textContent = `>> ${radioMessages[messageIndex]}`;
-    messageIndex = (messageIndex + 1) % radioMessages.length;
-    playRadioBeep();
+let previousMessageIndex = -1;
+let commsEnabled = false;
+
+function chooseRadioMessage() {
+    let messageIndex;
+
+    do {
+        messageIndex = Math.floor(
+            Math.random() * radioMessages.length
+        );
+    } while (
+        messageIndex === previousMessageIndex &&
+        radioMessages.length > 1
+    );
+
+    previousMessageIndex = messageIndex;
+
+    const message = radioMessages[messageIndex];
+
+    radioMessageElement.textContent = ">> " + message;
+
+    if (commsEnabled) {
+        speakRadioMessage(message);
+    }
 }
 
-updateRadioMessage();
-setInterval(updateRadioMessage, 8000);
-const introScreen = document.getElementById("intro-screen");
-const connectionStatus = document.getElementById("connection-status");
-const introOperators = document.querySelectorAll(".intro-operator");
+function speakRadioMessage(message) {
+    if (!("speechSynthesis" in window)) {
+        return;
+    }
 
-introOperators.forEach((operator, index) => {
-    setTimeout(() => {
-        operator.classList.add("connected");
-        connectionStatus.textContent =
-            `Operator ${index + 1} of ${introOperators.length} authenticated`;
-    }, 1000 + index * 700);
-});
+    window.speechSynthesis.cancel();
 
-setTimeout(() => {
-    connectionStatus.textContent = "Squad confirmed. Loading mission...";
-}, 4000);
+    const voiceMessage = new SpeechSynthesisUtterance(message);
 
-setTimeout(() => {
-    introScreen.classList.add("intro-finished");
-}, 5200);
-const soundToggle = document.getElementById("sound-toggle");
+    voiceMessage.rate = 0.82;
+    voiceMessage.pitch = 0.75;
+    voiceMessage.volume = 0.8;
 
-var soundEnabled = false;
-var audioContext;
+    window.speechSynthesis.speak(voiceMessage);
+}
 
-soundToggle.addEventListener("click", () => {
-    soundEnabled = !soundEnabled;
+chooseRadioMessage();
+setInterval(chooseRadioMessage, 8000);
 
-    if (soundEnabled) {
-        audioContext = audioContext || new AudioContext();
-        soundToggle.textContent = "🔊 COMMS ONLINE";
-        soundToggle.classList.add("sound-enabled");
-        playRadioBeep();
+
+// COMMS BUTTON
+
+const commsButton =
+    document.getElementById("comms-button");
+
+commsButton.addEventListener("click", function () {
+    commsEnabled = !commsEnabled;
+
+    if (commsEnabled) {
+        commsButton.textContent = "🔊 COMMS ENABLED";
+        commsButton.classList.add("comms-on");
+        chooseRadioMessage();
     } else {
-        soundToggle.textContent = "🔇 ENABLE COMMS";
-        soundToggle.classList.remove("sound-enabled");
+        commsButton.textContent = "🔇 ENABLE COMMS";
+        commsButton.classList.remove("comms-on");
+
+        if ("speechSynthesis" in window) {
+            window.speechSynthesis.cancel();
+        }
     }
 });
-
-function playRadioBeep() {
-    if (!soundEnabled || !audioContext) return;
-
-    const oscillator = audioContext.createOscillator();
-    const volume = audioContext.createGain();
-
-    oscillator.type = "square";
-    oscillator.frequency.setValueAtTime(720, audioContext.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(
-        420,
-        audioContext.currentTime + 0.12
-    );
-
-    volume.gain.setValueAtTime(0.08, audioContext.currentTime);
-    volume.gain.exponentialRampToValueAtTime(
-        0.001,
-        audioContext.currentTime + 0.15
-    );
-
-    oscillator.connect(volume);
-    volume.connect(audioContext.destination);
-
-    oscillator.start();
-    oscillator.stop(audioContext.currentTime + 0.15);
-}

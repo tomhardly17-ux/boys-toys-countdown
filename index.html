@@ -10,65 +10,65 @@
 </head>
 
 <body>
-    <div class="scan-lines"></div>
 
-<div class="radar">
-    <div class="radar-sweep"></div>
-    <div class="radar-center"></div>
-</div>
-    <main class="overlay">
+    <button id="comms-button" type="button">
+        🔇 ENABLE COMMS
+    </button>
 
-        <header>
-            <h2>BOYS & TOYS</h2>
+    <section id="intro-screen">
+        <h1>CONNECTING TO AVALON</h1>
+        <p>Establishing secure channel...</p>
+
+        <div class="intro-operators">
+            <div>SkilledSnake</div>
+            <div>HeavyontheKream</div>
+            <div>KTdefoor</div>
+            <div>mattismattismatt</div>
+        </div>
+    </section>
+
+    <main id="mission-screen">
+
+        <header class="main-header">
+            <p class="eyebrow">BOYS & TOYS WEEKEND</p>
             <h1>Operation: Kings of Avalon</h1>
+            <p class="mission-date">July 30, 2026 at 3:00 PM Eastern</p>
         </header>
 
         <section id="countdown">
-            <div class="box">
+
+            <div class="countdown-box">
                 <span id="days">00</span>
                 <small>DAYS</small>
             </div>
-            <div id="intro-screen">
-    <div class="intro-content">
-        <h2>CONNECTING TO AVALON</h2>
-        <p id="connection-status">Establishing secure channel...</p>
 
-        <div class="intro-operators">
-            <div class="intro-operator">SkilledSnake</div>
-            <div class="intro-operator">HeavyontheKream</div>
-            <div class="intro-operator">KTdefoor</div>
-            <div class="intro-operator">mattismattismatt</div>
-        </div>
-    </div>
-</div>
-<section class="radio-panel">
-    <span class="radio-label">COMMAND RADIO</span>
-    <p id="radio-message">Establishing secure connection...</p>
-</section>
-            <div class="box">
+            <div class="countdown-box">
                 <span id="hours">00</span>
                 <small>HOURS</small>
             </div>
 
-            <div class="box">
+            <div class="countdown-box">
                 <span id="minutes">00</span>
                 <small>MINUTES</small>
             </div>
 
-            <div class="box">
+            <div class="countdown-box">
                 <span id="seconds">00</span>
                 <small>SECONDS</small>
             </div>
+
         </section>
 
-        <section class="mission-panel">
-            <h3>MISSION STATUS</h3>
+        <section class="panel mission-panel">
+            <h2>MISSION STATUS</h2>
 
-            <p>☑ Pizza Ordered</p>
-            <p>☑ Cooler Packed</p>
-            <p>☑ Gummies Secured</p>
-            <p>☑ Avalon Reserved</p>
-            <p>☑ Beer Supply Confirmed</p>
+            <div class="checklist">
+                <p>☑ Pizza Ordered</p>
+                <p>☑ Cooler Packed</p>
+                <p>☑ Gummies Secured</p>
+                <p>☑ Avalon Reserved</p>
+                <p>☑ Beer Supply Confirmed</p>
+            </div>
 
             <div class="extraction">
                 <strong>NEXT EXTRACTION</strong>
@@ -77,17 +77,37 @@
             </div>
         </section>
 
-        <section class="operators">
-            <h3>ONLINE OPERATORS</h3>
+        <section class="panel operators">
+            <h2>ONLINE OPERATORS</h2>
 
-            <div>🟢 SkilledSnake <span>READY</span></div>
-            <div>🟢 HeavyontheKream <span>READY</span></div>
-            <div>🟢 KTdefoor <span>READY</span></div>
-            <div>🟢 mattismattismatt <span>READY</span></div>
+            <div class="operator">
+                <span>🟢 SkilledSnake</span>
+                <strong>READY</strong>
+            </div>
+
+            <div class="operator">
+                <span>🟢 HeavyontheKream</span>
+                <strong>READY</strong>
+            </div>
+
+            <div class="operator">
+                <span>🟢 KTdefoor</span>
+                <strong>READY</strong>
+            </div>
+
+            <div class="operator">
+                <span>🟢 mattismattismatt</span>
+                <strong>READY</strong>
+            </div>
         </section>
 
-        <section class="memorial">
-            <h3>IN MEMORIAM</h3>
+        <section class="panel radio-panel">
+            <h2>AVALON RADIO</h2>
+            <p id="radio-message">Connecting to Avalon Command...</p>
+        </section>
+
+        <section class="panel memorial">
+            <h2>IN MEMORIAM</h2>
 
             <p>
                 🎖 MonicaSLewinsky<br>
