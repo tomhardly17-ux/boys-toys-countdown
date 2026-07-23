@@ -80,6 +80,8 @@ const radioMessages = [
     "mattismattismatt has entered the AO.",
     "Mission objective: Make legendary memories.",
     "Can i get a, gotcha bitch?",
+    "Where are we landing, Matt?",
+    "We going for specialist?",
     "Secondary objective: Piggly Wiggly if necessary.",
     "Pizza supply confirmed. Morale is high.",
     "Cooler status confirmed. Proceed with operation.",
