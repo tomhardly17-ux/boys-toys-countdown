@@ -79,11 +79,12 @@ const radioMessages = [
     "KTdefoor reports all systems green.",
     "mattismattismatt has entered the AO.",
     "Mission objective: Make legendary memories.",
+    "Can i get a, gotcha bitch?",
     "Secondary objective: Piggly Wiggly if necessary.",
     "Pizza supply confirmed. Morale is high.",
     "Cooler status confirmed. Proceed with operation.",
     "Avalon Command has cleared your squad.",
-    "Operation Bombaclaatt is a go. Proceed with cation.",
+    "Operation Bombaclaatt is a go. Proceed with caution.",
     "All operators accounted for. Stand by for deployment."
 ];
 
