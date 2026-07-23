@@ -76,7 +76,7 @@ const radioMessages = [
     "KTdefoor reports all systems green.",
     "mattismattismatt has entered the AO.",
     "Mission objective: Make legendary memories.",
-    "Secondary objective: Nobody loses the truck keys.",
+    "Secondary objective: Piggly Wiggly if necessary.",
     "Pizza supply confirmed. Morale is high.",
     "Cooler status confirmed. Proceed with operation.",
     "Avalon Command has cleared your squad.",
@@ -153,3 +153,31 @@ commsButton.addEventListener("click", function () {
         }
     }
 });
+// CINEMATIC EMBERS
+
+const embersContainer = document.getElementById("embers");
+
+for (let i = 0; i < 25; i++) {
+    const ember = document.createElement("span");
+
+    ember.classList.add("ember");
+
+    ember.style.left = Math.random() * 100 + "%";
+    ember.style.setProperty(
+        "--size",
+        Math.random() * 4 + 2 + "px"
+    );
+    ember.style.setProperty(
+        "--duration",
+        Math.random() * 8 + 7 + "s"
+    );
+    ember.style.setProperty(
+        "--drift",
+        Math.random() * 160 - 80 + "px"
+    );
+
+    ember.style.animationDelay =
+        Math.random() * 10 + "s";
+
+    embersContainer.appendChild(ember);
+}
