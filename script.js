@@ -71,6 +71,9 @@ setTimeout(function () {
 const radioMessages = [
     "Command: Avalon perimeter secure.",
     "Welcome back, SkilledSnake.",
+    "GirthQuake has entered the AO.",
+    "GirthQuake reports maximum tactical readiness.",
+    "Is that a gold gawker in your hand?",
     "SkilledSnake has assumed squad leadership.",
     "HeavyontheKream has secured the refreshments.",
     "KTdefoor reports all systems green.",
@@ -80,6 +83,7 @@ const radioMessages = [
     "Pizza supply confirmed. Morale is high.",
     "Cooler status confirmed. Proceed with operation.",
     "Avalon Command has cleared your squad.",
+    "Operation Bombaclaatt is a go. Proceed with cation.",
     "All operators accounted for. Stand by for deployment."
 ];
 
@@ -181,3 +185,69 @@ for (let i = 0; i < 25; i++) {
 
     embersContainer.appendChild(ember);
 }
+const dingusCode = [
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowLeft",
+    "ArrowRight",
+    "b",
+    "a"
+];
+
+let dingusPosition = 0;
+
+function activateDingusProtocol() {
+    document.body.classList.toggle("zombie-mode");
+
+    const radio = document.getElementById("radio-message");
+
+    if (document.body.classList.contains("zombie-mode")) {
+        radio.textContent =
+            ">> EMERGENCY: Dingus Khan has returned to the AO.";
+    } else {
+        radio.textContent =
+            ">> Command: Dingus Protocol has been contained.";
+    }
+
+    playRadioBeep();
+}
+
+document.addEventListener("keydown", event => {
+    const pressedKey =
+        event.key.length === 1 ? event.key.toLowerCase() : event.key;
+
+    if (pressedKey === dingusCode[dingusPosition]) {
+        dingusPosition++;
+
+        if (dingusPosition === dingusCode.length) {
+            activateDingusProtocol();
+            dingusPosition = 0;
+        }
+    } else {
+        dingusPosition = 0;
+    }
+});
+
+const operationTitle = document.querySelector("h1");
+
+let titleTapCount = 0;
+let titleTapTimer;
+
+operationTitle.addEventListener("click", () => {
+    titleTapCount++;
+
+    clearTimeout(titleTapTimer);
+
+    titleTapTimer = setTimeout(() => {
+        titleTapCount = 0;
+    }, 2500);
+
+    if (titleTapCount === 5) {
+        activateDingusProtocol();
+        titleTapCount = 0;
+    }
+});
