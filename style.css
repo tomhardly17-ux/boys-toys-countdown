@@ -230,3 +230,137 @@ body {
     float: right;
     color: #79ff79;
 }
+.scan-lines {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 3px,
+        rgba(121, 255, 121, 0.035) 4px
+    );
+}
+
+.scan-lines::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+
+    background: rgba(121, 255, 121, 0.25);
+    box-shadow: 0 0 12px #79ff79;
+
+    animation: screenScan 7s linear infinite;
+}
+
+@keyframes screenScan {
+    from {
+        top: -5px;
+    }
+
+    to {
+        top: 100%;
+    }
+}
+
+.radar {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 200;
+
+    width: 110px;
+    height: 110px;
+
+    border: 2px solid rgba(121, 255, 121, 0.7);
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            transparent 49%,
+            rgba(121, 255, 121, 0.25) 50%,
+            transparent 51%
+        ),
+        linear-gradient(
+            90deg,
+            transparent 49%,
+            rgba(121, 255, 121, 0.25) 50%,
+            transparent 51%
+        ),
+        rgba(0, 20, 0, 0.75);
+
+    box-shadow: 0 0 20px rgba(121, 255, 121, 0.25);
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.radar::before,
+.radar::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(121, 255, 121, 0.25);
+    border-radius: 50%;
+}
+
+.radar::before {
+    inset: 22px;
+}
+
+.radar::after {
+    inset: 40px;
+}
+
+.radar-sweep {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+
+    background: conic-gradient(
+        from 0deg,
+        rgba(121, 255, 121, 0.6),
+        transparent 20%,
+        transparent
+    );
+
+    animation: radarSpin 3s linear infinite;
+}
+
+.radar-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 7px;
+    height: 7px;
+
+    background: #79ff79;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #79ff79;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes radarSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 600px) {
+    .radar {
+        width: 75px;
+        height: 75px;
+        right: 12px;
+        bottom: 12px;
+    }
+
+    .radar::before {
+        inset: 15px;
+    }
+
+    .radar::after {
+        inset: 28px;
+    }
+}
