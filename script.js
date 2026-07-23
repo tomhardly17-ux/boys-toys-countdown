@@ -29,3 +29,26 @@ function updateCountdown() {
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
+const radioMessages = [
+    "Avalon Command: All operators confirmed.",
+    "SkilledSnake has assumed squad leadership.",
+    "HeavyontheKream has secured the refreshments.",
+    "KTdefoor reports all systems green.",
+    "mattismattismatt has entered the AO.",
+    "Cooler inventory has been classified.",
+    "Mission objective: Create legendary memories.",
+    "Secondary objective: Nobody loses the truck keys.",
+    "Warning: Tactical dad jokes detected.",
+    "Extraction window remains on schedule."
+];
+
+const radioMessage = document.getElementById("radio-message");
+let messageIndex = 0;
+
+function updateRadioMessage() {
+    radioMessage.textContent = `>> ${radioMessages[messageIndex]}`;
+    messageIndex = (messageIndex + 1) % radioMessages.length;
+}
+
+updateRadioMessage();
+setInterval(updateRadioMessage, 8000);

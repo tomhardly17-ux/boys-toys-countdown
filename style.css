@@ -142,4 +142,35 @@ line-height:2;
 body {
     overflow-x: hidden;
     overflow-y: auto;
+}.radio-panel {
+    width: min(90%, 650px);
+    margin: 25px auto;
+    padding: 16px 20px;
+    box-sizing: border-box;
+
+    background: rgba(0, 15, 0, 0.88);
+    border-left: 4px solid #79ff79;
+    color: #79ff79;
+    text-align: left;
+    font-family: "Courier New", monospace;
+}
+
+.radio-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: white;
+}
+
+#radio-message {
+    min-height: 24px;
+    margin: 0;
+    animation: radioPulse 1.5s infinite;
+}
+
+@keyframes radioPulse {
+    50% {
+        opacity: 0.65;
+    }
 }
