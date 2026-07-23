@@ -174,3 +174,59 @@ body {
         opacity: 0.65;
     }
 }
+#intro-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+    box-sizing: border-box;
+    background: #050805;
+    color: white;
+
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#intro-screen.intro-finished {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.intro-content {
+    width: min(100%, 500px);
+    font-family: "Courier New", monospace;
+}
+
+.intro-content h2 {
+    color: #79ff79;
+    letter-spacing: 4px;
+}
+
+#connection-status {
+    color: #aaa;
+}
+
+.intro-operator {
+    margin: 14px 0;
+    padding: 12px;
+    border-left: 3px solid #333;
+    color: #666;
+    background: rgba(255, 255, 255, 0.04);
+    transition: 0.4s ease;
+}
+
+.intro-operator.connected {
+    color: white;
+    border-color: #79ff79;
+    background: rgba(121, 255, 121, 0.1);
+}
+
+.intro-operator.connected::after {
+    content: "  ✓ CONNECTED";
+    float: right;
+    color: #79ff79;
+}

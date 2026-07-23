@@ -52,3 +52,22 @@ function updateRadioMessage() {
 
 updateRadioMessage();
 setInterval(updateRadioMessage, 8000);
+const introScreen = document.getElementById("intro-screen");
+const connectionStatus = document.getElementById("connection-status");
+const introOperators = document.querySelectorAll(".intro-operator");
+
+introOperators.forEach((operator, index) => {
+    setTimeout(() => {
+        operator.classList.add("connected");
+        connectionStatus.textContent =
+            `Operator ${index + 1} of ${introOperators.length} authenticated`;
+    }, 1000 + index * 700);
+});
+
+setTimeout(() => {
+    connectionStatus.textContent = "Squad confirmed. Loading mission...";
+}, 4000);
+
+setTimeout(() => {
+    introScreen.classList.add("intro-finished");
+}, 5200);
