@@ -254,3 +254,42 @@ operationTitle.addEventListener("click", () => {
         titleTapCount = 0;
     }
 });
+const squadActivity = [
+    ["SkilledSnake", "requests immediate tactical support"],
+    ["HeavyontheKream", "secured the refreshments"],
+    ["KTdefoor", "completed a tactical snack run"],
+    ["mattismattismatt", "reported zero tactical concerns"],
+    ["GirthQuake", "entered the area of operations"],
+    ["SkilledSnake", "pushed and needs backup"],
+    ["HeavyontheKream", "deployed the emergency cooler"],
+    ["KTdefoor", "requested immediate redeployment"],
+    ["mattismattismatt", "marked the LZ"],
+    ["GirthQuake", "activated maximum girth"],
+    ["Avalon Command", "authorized questionable decisions"],
+    ["The Squad", "earned 500 weekend XP"]
+];
+
+const killFeed = document.getElementById("kill-feed");
+let activityPosition = 0;
+
+function addSquadActivity() {
+    const activity = squadActivity[activityPosition];
+
+    const feedItem = document.createElement("div");
+    feedItem.className = "feed-item";
+
+    feedItem.innerHTML =
+        `<span class="feed-name">${activity[0]}</span> ${activity[1]}`;
+
+    killFeed.prepend(feedItem);
+
+    while (killFeed.children.length > 4) {
+        killFeed.removeChild(killFeed.lastChild);
+    }
+
+    activityPosition =
+        (activityPosition + 1) % squadActivity.length;
+}
+
+addSquadActivity();
+setInterval(addSquadActivity, 6000);

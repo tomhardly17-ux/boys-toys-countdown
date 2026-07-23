@@ -840,3 +840,120 @@ body::after {
         }
     }
 }
+body.zombie-mode::after {
+    content: "DINGUS PROTOCOL ACTIVATED";
+    position: fixed;
+    inset: 0;
+    z-index: 9500;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(90, 0, 0, 0.3);
+    color: #ff3030;
+
+    font-family: "Courier New", monospace;
+    font-size: clamp(1.5rem, 6vw, 4rem);
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-align: center;
+
+    pointer-events: none;
+    animation: zombieWarning 1.2s ease forwards;
+}
+
+body.zombie-mode .box,
+body.zombie-mode .mission-panel,
+body.zombie-mode .operators,
+body.zombie-mode .memorial,
+body.zombie-mode .radio-panel,
+body.zombie-mode .briefing-panel {
+    border-color: #ff3030;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+}
+
+body.zombie-mode h1,
+body.zombie-mode h2,
+body.zombie-mode h3,
+body.zombie-mode #radio-message,
+body.zombie-mode .operators span {
+    color: #ff3030;
+}
+
+body.zombie-mode .scan-lines {
+    filter: hue-rotate(120deg);
+}
+
+body.zombie-mode .radar {
+    filter: hue-rotate(120deg);
+}
+
+@keyframes zombieWarning {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 0.2;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+.killfeed-panel {
+    width: min(90%, 650px);
+    margin: 25px auto;
+    padding: 20px;
+    box-sizing: border-box;
+
+    background: rgba(8, 8, 8, 0.88);
+    border-left: 4px solid #79ff79;
+    font-family: "Courier New", monospace;
+    text-align: left;
+}
+
+.killfeed-panel h2 {
+    margin: 0 0 15px;
+    color: #79ff79;
+    font-size: 1rem;
+    letter-spacing: 3px;
+}
+
+.feed-item {
+    margin: 7px 0;
+    padding: 8px 10px;
+
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 2px solid rgba(121, 255, 121, 0.5);
+    color: #ddd;
+
+    animation: feedArrival 0.4s ease;
+}
+
+.feed-name {
+    color: #79ff79;
+    font-weight: bold;
+}
+
+@keyframes feedArrival {
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
