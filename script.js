@@ -107,7 +107,7 @@ const radioMessages = [
 
 "GirthQuake has entered the AO. Good Luck.",
 "GirthQuake has requested additional room in the deployment vehicle.",
-"GirthQuake reports maximum width and minimum concern.",
+"GirthQuake reports maximum width and length for maximum pleasure.",
 
 "Avalon Command has lowered expectations to achievable levels.",
 "The squad has passed the readiness check but failed the maturity check.",
