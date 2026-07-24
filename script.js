@@ -535,3 +535,145 @@ if (
         }, 1200);
     });
 }
+const startingSquadCash = 12000;
+const buyStationStorageKey = "avalonSquadCash";
+
+const squadCashDisplay =
+    document.getElementById("squad-cash");
+
+const buyStationMessage =
+    document.getElementById("buy-station-message");
+
+const buyStationItems =
+    document.querySelectorAll(".buy-item");
+
+const resetBuyStationButton =
+    document.getElementById("reset-buy-station");
+
+function loadSquadCash() {
+    try {
+        const savedCash =
+            localStorage.getItem(buyStationStorageKey);
+
+        const convertedCash = Number(savedCash);
+
+        if (
+            savedCash !== null &&
+            Number.isFinite(convertedCash)
+        ) {
+            return convertedCash;
+        }
+    } catch (error) {
+        console.log("Buy Station storage unavailable.");
+    }
+
+    return startingSquadCash;
+}
+
+let squadCash = loadSquadCash();
+
+function saveSquadCash() {
+    try {
+        localStorage.setItem(
+            buyStationStorageKey,
+            String(squadCash)
+        );
+    } catch (error) {
+        console.log("Buy Station cash was not saved.");
+    }
+}
+
+function formatSquadCash(amount) {
+    return `$${amount.toLocaleString()}`;
+}
+
+function updateBuyStation() {
+    if (!squadCashDisplay) {
+        return;
+    }
+
+    squadCashDisplay.textContent =
+        formatSquadCash(squadCash);
+
+    buyStationItems.forEach(item => {
+        const price =
+            Number(item.dataset.buyPrice);
+
+        item.classList.toggle(
+            "unaffordable",
+            price > squadCash
+        );
+    });
+}
+
+if (
+    squadCashDisplay &&
+    buyStationMessage &&
+    buyStationItems.length > 0
+) {
+    buyStationItems.forEach(item => {
+        item.addEventListener("click", () => {
+            const itemName =
+                item.dataset.buyName;
+
+            const itemPrice =
+                Number(item.dataset.buyPrice);
+
+            const itemMessage =
+                item.dataset.buyMessage;
+
+            if (itemPrice > squadCash) {
+                buyStationMessage.className =
+                    "buy-station-message purchase-error";
+
+                buyStationMessage.textContent =
+                    `INSUFFICIENT FUNDS: ${itemName} requires ${formatSquadCash(itemPrice)}.`;
+
+                if (typeof playRadioBeep === "function") {
+                    playRadioBeep();
+                }
+
+                return;
+            }
+
+            squadCash -= itemPrice;
+            saveSquadCash();
+            updateBuyStation();
+
+            buyStationMessage.className =
+                "buy-station-message";
+
+            buyStationMessage.textContent =
+                `PURCHASE CONFIRMED: ${itemMessage} Remaining balance: ${formatSquadCash(squadCash)}.`;
+
+            if (typeof playRadioBeep === "function") {
+                playRadioBeep();
+            }
+        });
+    });
+
+    updateBuyStation();
+}
+
+if (resetBuyStationButton) {
+    resetBuyStationButton.addEventListener(
+        "click",
+        () => {
+            squadCash = startingSquadCash;
+            saveSquadCash();
+            updateBuyStation();
+
+            if (buyStationMessage) {
+                buyStationMessage.className =
+                    "buy-station-message";
+
+                buyStationMessage.textContent =
+                    "FUNDS REDEPLOYED: $12,000 available.";
+            }
+
+            if (typeof playRadioBeep === "function") {
+                playRadioBeep();
+            }
+        }
+    );
+}
