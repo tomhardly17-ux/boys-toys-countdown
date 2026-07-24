@@ -362,3 +362,176 @@ if (killFeedElement) {
     addSquadActivityItem();
     setInterval(addSquadActivityItem, 6000);
 }
+const contractOperators = [
+    "SkilledSnake",
+    "HeavyontheKream",
+    "KTdefoor",
+    "mattismattismatt",
+    "GirthQuake"
+];
+
+const verdanskContracts = [
+    {
+        type: "RECON",
+        title: "Secure the Intel",
+        location: "TV Station",
+        objective:
+            "Capture the marked position and transmit the recovered intelligence.",
+        reward: "1,500 Weekend XP"
+    },
+    {
+        type: "SCAVENGER",
+        title: "Locate the Supply Caches",
+        location: "Verdansk Airport",
+        objective:
+            "Find and secure three marked supply caches before extraction.",
+        reward: "Armor Satchel + 2,000 Weekend XP"
+    },
+    {
+        type: "BOUNTY",
+        title: "Track the Target",
+        location: "Downtown Verdansk",
+        objective:
+            "Locate the designated target and maintain visual contact.",
+        reward: "3,000 Weekend XP"
+    },
+    {
+        type: "MOST WANTED",
+        title: "Survive the Hunt",
+        location: "Verdansk Stadium",
+        objective:
+            "Remain active until the contract timer expires.",
+        reward: "Full Squad Redeployment"
+    },
+    {
+        type: "SUPPLY RUN",
+        title: "Reach the Buy Station",
+        location: "Superstore",
+        objective:
+            "Reach the marked Buy Station before the contract expires.",
+        reward: "Buy Station Discount"
+    },
+    {
+        type: "SAFECRACKER",
+        title: "Secure the Strongholds",
+        location: "Boneyard",
+        objective:
+            "Open three marked strongholds and recover their contents.",
+        reward: "Loadout Drop + 3,500 Weekend XP"
+    },
+    {
+        type: "INTEL",
+        title: "Confirm the Extraction Route",
+        location: "Verdansk Military Base",
+        objective:
+            "Recover the route data and confirm safe passage to Avalon.",
+        reward: "Advanced UAV + 2,500 Weekend XP"
+    },
+    {
+        type: "RECON",
+        title: "Survey the Final Circle",
+        location: "Zordaya Prison Complex",
+        objective:
+            "Reach the observation point and identify the final extraction zone.",
+        reward: "Circle Preview + 2,000 Weekend XP"
+    }
+];
+
+const acceptContractButton =
+    document.getElementById("accept-contract-button");
+
+const contractResult =
+    document.getElementById("contract-result");
+
+const contractType =
+    document.getElementById("contract-type");
+
+const contractTitle =
+    document.getElementById("contract-title");
+
+const contractOperator =
+    document.getElementById("contract-operator");
+
+const contractLocation =
+    document.getElementById("contract-location");
+
+const contractObjective =
+    document.getElementById("contract-objective");
+
+const contractReward =
+    document.getElementById("contract-reward");
+
+if (
+    acceptContractButton &&
+    contractResult &&
+    contractType &&
+    contractTitle &&
+    contractOperator &&
+    contractLocation &&
+    contractObjective &&
+    contractReward
+) {
+    acceptContractButton.addEventListener("click", () => {
+        acceptContractButton.disabled = true;
+        acceptContractButton.textContent =
+            "LOCATING CONTRACT...";
+
+        contractResult.className = "contract-visible";
+        contractType.textContent = "SEARCHING VERDANSK";
+        contractTitle.textContent =
+            "Stand by for assignment";
+        contractOperator.textContent = "Scanning...";
+        contractLocation.textContent = "Classified";
+        contractObjective.textContent =
+            "Avalon Command is preparing mission details.";
+        contractReward.textContent = "Pending";
+
+        if (typeof playRadioBeep === "function") {
+            playRadioBeep();
+        }
+
+        setTimeout(() => {
+            const selectedContract =
+                verdanskContracts[
+                    Math.floor(
+                        Math.random() *
+                        verdanskContracts.length
+                    )
+                ];
+
+            const selectedOperator =
+                contractOperators[
+                    Math.floor(
+                        Math.random() *
+                        contractOperators.length
+                    )
+                ];
+
+            contractType.textContent =
+                `${selectedContract.type} CONTRACT`;
+
+            contractTitle.textContent =
+                selectedContract.title;
+
+            contractOperator.textContent =
+                selectedOperator;
+
+            contractLocation.textContent =
+                selectedContract.location;
+
+            contractObjective.textContent =
+                selectedContract.objective;
+
+            contractReward.textContent =
+                selectedContract.reward;
+
+            acceptContractButton.disabled = false;
+            acceptContractButton.textContent =
+                "ACCEPT ANOTHER CONTRACT";
+
+            if (typeof playRadioBeep === "function") {
+                playRadioBeep();
+            }
+        }, 1200);
+    });
+}

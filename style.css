@@ -1003,3 +1003,125 @@ body.zombie-mode .radar {
         transform: translateX(0);
     }
 }
+.contract-panel {
+    width: min(90%, 650px);
+    margin: 25px auto;
+    padding: 20px;
+    box-sizing: border-box;
+
+    background: rgba(8, 12, 8, 0.92);
+    border: 1px solid #79ff79;
+    font-family: "Courier New", monospace;
+    text-align: left;
+}
+
+.contract-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.contract-label {
+    color: #aaa;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+}
+
+.contract-heading h2 {
+    margin: 5px 0 0;
+    color: #79ff79;
+    letter-spacing: 3px;
+}
+
+.contract-status {
+    padding: 5px 8px;
+    border: 1px solid #79ff79;
+    color: #79ff79;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+}
+
+#accept-contract-button {
+    width: 100%;
+    padding: 14px 20px;
+
+    border: 1px solid #79ff79;
+    background: rgba(121, 255, 121, 0.1);
+    color: #79ff79;
+
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+#accept-contract-button:hover {
+    background: #79ff79;
+    color: #071007;
+}
+
+#accept-contract-button:disabled {
+    cursor: wait;
+    opacity: 0.6;
+}
+
+.contract-hidden {
+    display: none;
+}
+
+.contract-visible {
+    display: block;
+    margin-top: 20px;
+    padding: 18px;
+
+    background: rgba(0, 0, 0, 0.5);
+    border-left: 4px solid #ffd54a;
+
+    animation: contractArrival 0.5s ease;
+}
+
+#contract-type {
+    color: #ffd54a;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+#contract-title {
+    margin: 10px 0 18px;
+    color: white;
+    font-size: 1.4rem;
+}
+
+.contract-details p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.contract-details strong {
+    color: #79ff79;
+}
+
+@keyframes contractArrival {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .contract-heading {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #contract-title {
+        font-size: 1.1rem;
+    }
+}
