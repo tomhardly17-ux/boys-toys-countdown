@@ -74,7 +74,6 @@ const radioMessages = [
     "GirthQuake has entered the AO.",
     "GirthQuake reports maximum tactical readiness.",
     "Is that a gold gawker in your hand?",
-    "SkilledSnake has assumed squad leadership.",
     "HeavyontheKream has secured the refreshments.",
     "KTdefoor reports all systems green.",
     "mattismattismatt has entered the AO.",
@@ -319,10 +318,7 @@ const squadActivityItems = [
 
     ["GirthQuake", "entered the area of operations"],
     ["GirthQuake", "activated maximum girth"],
-    ["GirthQuake", "caused unexpected seismic activity"],
-    ["GirthQuake", "occupied two squad positions simultaneously"],
-    ["GirthQuake", "requested a wider tactical insertion point"],
-    ["GirthQuake", "was detected by radar before joining the lobby"],
+    ["GirthQuake", "was late to the gunfight"],
 
     ["Avalon Command", "authorized questionable decisions"],
     ["Avalon Command", "detected elevated levels of confidence"],
