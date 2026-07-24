@@ -87,6 +87,39 @@ const radioMessages = [
     "Cooler status confirmed. Proceed with operation.",
     "Avalon Command has cleared your squad.",
     "Operation Bombaclaatt is a go. Proceed with caution.",
+    "Command advises SkilledSnake that confidence is not a substitute for a plan.",
+    "SkilledSnake has volunteered the squad for something nobody approved.",
+    "SkilledSnake is currently explaining why that technically counted as a win.",
+    "SkilledSnake has marked a location approximately nowhere near the objective.",
+
+    "HeavyontheKream has stolen another orangey and declared it mission essential.",
+    "HeavyontheKream reports the beverage situation is stable but classified.",
+    "Command has denied HeavyontheKream's request for a more tequila.",
+    "HeavyontheKream is a bottom..........of the tower card getter.",
+
+    "KTdefoor has blamed the latest incident on server latency.",
+    "KTdefoor is requesting everyone stop talking so he can continue talking.",
+    "KTdefoor has confirmed he was absolutely about to do that.",
+    "KTdefoor reports the plan made more sense before everyone followed it.",
+    "mattismattismatt has disconnected emotionally but remains online.",
+    "mattismattismatt has returned from an unexplained tactical absence.",
+    "Command is still waiting for mattismattismatt to acknowledge the briefing.",
+    "mattismattismatt reports everything is under control, which concerns Command.",
+
+"GirthQuake has entered the AO. Good Luck.",
+"GirthQuake has requested additional room in the deployment vehicle.",
+"GirthQuake reports maximum width and minimum concern.",
+
+"Avalon Command has lowered expectations to achievable levels.",
+"The squad has passed the readiness check but failed the maturity check.",
+"Command reminds all operators that bad decisions still require teamwork.",
+"Weekend intelligence has been reviewed and immediately classified.",
+"All five operators are online. Productivity is no longer expected.",
+"Mission status updated: Nobody appears to know what is happening.",
+"Command has received several complaints and chosen to ignore all of them.",
+"The squad's tactical budget has been redirected to snacks.",
+"Intelligence confirms the group chat cannot be used as legal evidence.",
+"Final objective: Survive long enough to schedule next year's mission.",
     "All operators accounted for. Stand by for deployment."
 ];
 
