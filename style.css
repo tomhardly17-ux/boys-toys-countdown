@@ -957,3 +957,49 @@ body.zombie-mode .radar {
         transform: translateX(0);
     }
 }
+.killfeed-panel {
+    width: min(90%, 650px);
+    margin: 25px auto;
+    padding: 20px;
+    box-sizing: border-box;
+
+    background: rgba(8, 8, 8, 0.88);
+    border-left: 4px solid #79ff79;
+    font-family: "Courier New", monospace;
+    text-align: left;
+}
+
+.killfeed-panel h2 {
+    margin: 0 0 15px;
+    color: #79ff79;
+    font-size: 1rem;
+    letter-spacing: 3px;
+}
+
+.feed-item {
+    margin: 7px 0;
+    padding: 8px 10px;
+
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 2px solid rgba(121, 255, 121, 0.5);
+    color: #ddd;
+
+    animation: feedArrival 0.4s ease;
+}
+
+.feed-name {
+    color: #79ff79;
+    font-weight: bold;
+}
+
+@keyframes feedArrival {
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

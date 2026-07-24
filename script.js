@@ -254,26 +254,61 @@ operationTitle.addEventListener("click", () => {
         titleTapCount = 0;
     }
 });
-const squadActivity = [
-    ["SkilledSnake", "requests immediate tactical support"],
+
+const squadActivityItems = [
+    ["SkilledSnake", "assumed squad leadership without a vote"],
+    ["SkilledSnake", "marked every location except the correct one"],
+    ["SkilledSnake", "announced a flawless plan moments before disaster"],
+    ["SkilledSnake", "requested complete silence while talking nonstop"],
+    ["SkilledSnake", "confirmed the squad is definitely almost ready"],
+    ["SkilledSnake", "used advanced tactics to avoid taking responsibility"],
+
     ["HeavyontheKream", "secured the refreshments"],
-    ["KTdefoor", "completed a tactical snack run"],
-    ["mattismattismatt", "reported zero tactical concerns"],
-    ["GirthQuake", "entered the area of operations"],
-    ["SkilledSnake", "pushed and needs backup"],
     ["HeavyontheKream", "deployed the emergency cooler"],
-    ["KTdefoor", "requested immediate redeployment"],
-    ["mattismattismatt", "marked the LZ"],
+    ["HeavyontheKream", "reported critically low snack levels"],
+    ["HeavyontheKream", "completed a classified beverage resupply"],
+    ["HeavyontheKream", "refused to reveal what is inside the cooler"],
+    ["HeavyontheKream", "gained full control of the kitchen sector"],
+
+    ["KTdefoor", "completed a tactical snack run"],
+    ["KTdefoor", "requested immediate redeployment to the couch"],
+    ["KTdefoor", "pinged an objective nobody else can see"],
+    ["KTdefoor", "claimed the lag was responsible"],
+    ["KTdefoor", "began a story with absolutely no tactical relevance"],
+    ["KTdefoor", "confirmed he has been ready for at least three hours"],
+
+    ["mattismattismatt", "reported zero tactical concerns"],
+    ["mattismattismatt", "marked Avalon as the primary objective"],
+    ["mattismattismatt", "disappeared from comms during a critical moment"],
+    ["mattismattismatt", "returned from the Gulag with no explanation"],
+    ["mattismattismatt", "requested clarification after ignoring the briefing"],
+    ["mattismattismatt", "confirmed that everything is probably fine"],
+
+    ["GirthQuake", "entered the area of operations"],
     ["GirthQuake", "activated maximum girth"],
+    ["GirthQuake", "caused unexpected seismic activity"],
+    ["GirthQuake", "occupied two squad positions simultaneously"],
+    ["GirthQuake", "requested a wider tactical insertion point"],
+    ["GirthQuake", "was detected by radar before joining the lobby"],
+
     ["Avalon Command", "authorized questionable decisions"],
-    ["The Squad", "earned 500 weekend XP"]
+    ["Avalon Command", "detected elevated levels of confidence"],
+    ["Avalon Command", "rejected the squad's expense report"],
+    ["The Squad", "earned 500 weekend XP"],
+    ["The Squad", "failed the mandatory maturity assessment"],
+    ["The Squad", "has been advised not to explain this weekend"]
 ];
 
-const killFeed = document.getElementById("kill-feed");
-let activityPosition = 0;
+const killFeedElement = document.getElementById("kill-feed");
+let squadActivityPosition = 0;
 
-function addSquadActivity() {
-    const activity = squadActivity[activityPosition];
+function addSquadActivityItem() {
+    if (!killFeedElement) {
+        return;
+    }
+
+    const activity =
+        squadActivityItems[squadActivityPosition];
 
     const feedItem = document.createElement("div");
     feedItem.className = "feed-item";
@@ -281,15 +316,20 @@ function addSquadActivity() {
     feedItem.innerHTML =
         `<span class="feed-name">${activity[0]}</span> ${activity[1]}`;
 
-    killFeed.prepend(feedItem);
+    killFeedElement.prepend(feedItem);
 
-    while (killFeed.children.length > 4) {
-        killFeed.removeChild(killFeed.lastChild);
+    while (killFeedElement.children.length > 4) {
+        killFeedElement.removeChild(
+            killFeedElement.lastChild
+        );
     }
 
-    activityPosition =
-        (activityPosition + 1) % squadActivity.length;
+    squadActivityPosition =
+        (squadActivityPosition + 1) %
+        squadActivityItems.length;
 }
 
-addSquadActivity();
-setInterval(addSquadActivity, 6000);
+if (killFeedElement) {
+    addSquadActivityItem();
+    setInterval(addSquadActivityItem, 6000);
+}
